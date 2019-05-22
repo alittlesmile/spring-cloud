@@ -1,0 +1,47 @@
+server:
+  port: 8000
+#spring cloud config native
+spring:
+  profiles:
+    active: native
+  application:
+    name: config-server-eureka
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: /home/smile/workspace-sts/config-repo
+#spring cloud config git
+#spring:
+#  application:
+#    name: config-server-eureka
+#  cloud:
+#    config:
+#      server:
+#        git:
+#          uri: http://localhost:3380/root/smile.git
+#          search-paths: config-repo
+#          username: root
+#          password: root123456
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+      
+## actuator refresh
+management: 
+#  server:
+#    port: 8003
+  endpoint:
+    refresh:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+#        - info
+#        - health
+#        - refresh
+      

@@ -1,0 +1,36 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: gateway-server-eureka-filter
+  cloud:
+    gateway:
+     discovery:
+        locator:
+         enabled: true
+     routes:
+# forward by serviceID
+     - id: add_request_parameter_route
+       uri: lb://producer
+#       uri: http://localhost:8005/getHello
+       filters:
+       - AddRequestParameter=name,wang
+       predicates:
+         - Method=GET
+         - Path=/getHello
+         
+ # forward by address
+#     - id: add_request_parameter_route
+#       uri: http://localhost:9000
+#       filters:
+#       - AddRequestParameter=foo, bar
+#       predicates:
+#         - Method=GET
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+logging:
+  level:
+    org.springframework.cloud.gateway: debug

@@ -1,0 +1,25 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: gateway-server-eureka
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+#      routes:
+#      - id: neo_route
+#        uri: https://www.cnblogs.com/alittlesmile/
+#        predicates:
+#        - Path=/alittlesmile
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+logging:
+  level:
+    org.springframework.cloud.gateway: debug
+    
